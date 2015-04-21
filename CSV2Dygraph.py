@@ -70,9 +70,11 @@ def main(input_filepath, output_filepath = None):
         array_rows.append(out_val)
     array_rows[len(array_rows)-1] = array_rows[-1][0:-1]
     
-    
+    var_name = os.path.splitext(os.path.split(output_filepath)[1])[0]
     out_fh = open(output_filepath, 'w')
+    out_fh.write('var {0} = '.format(var_name))
     out_fh.write('[{0}]'.format("\n".join(array_rows)))
+    out_fh.write(';')
     out_fh.close()
     print "Done"
 
