@@ -64,9 +64,16 @@ def main(input_filepath, output_filepath = None):
         
         data = list()
         for d in row[1:col_length]:
-            if d == "": d = "null"
+            if d == "": d = "NaN"
             data.append(d)
-        out_val = "[{0},{1}],".format(date, ",".join(data))
+
+        NaN_count = 0
+        for dta in data:
+            if dta == "NaN":
+                NaN_count += 1
+
+        if NaN_count < len(data):
+            out_val = "[{0},{1}],".format(date, ",".join(data))
         array_rows.append(out_val)
     array_rows[len(array_rows)-1] = array_rows[-1][0:-1]
     
